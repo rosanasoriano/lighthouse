@@ -45,21 +45,31 @@
 </div>
 
 <script>
-    const input = document.getElementById('passcode');
-    const errorMsg = document.getElementById('error-msg');
-    const loginScreen = document.getElementById('login-screen');
-    const content = document.getElementById('content');
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('passcode');
+        const errorMsg = document.getElementById('error-msg');
+        const loginScreen = document.getElementById('login-screen');
+        const content = document.getElementById('content');
 
-    input.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            if (input.value === '1902') {
-                loginScreen.classList.add('hidden');
-                content.classList.remove('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-                input.value = '';
+        input.focus();
+        
+        document.addEventListener('click', () => input.focus());
+
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const val = input.value.trim();
+                
+                if (val === '1902') {
+                    loginScreen.classList.add('hidden');
+                    content.classList.remove('hidden');
+                } else {
+                    errorMsg.classList.remove('hidden');
+                    input.value = '';
+                    input.style.borderBottomColor = '#ff3333';
+                    setTimeout(() => input.style.borderBottomColor = '#33ff33', 500);
+                }
             }
-        }
+        });
     });
 </script>
 </body>
