@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL - ACCESS RESTRICTED</title>
+    <style>
+        body { background: #0c0c0c; color: #33ff33; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        #terminal { width: 90%; max-width: 600px; border: 1px solid #33ff33; padding: 25px; box-shadow: 0 0 20px rgba(51, 255, 51, 0.15); border-radius: 5px; }
+        input { background: transparent; border: none; border-bottom: 2px solid #33ff33; color: #33ff33; font-family: inherit; font-size: 1.2em; width: 80px; outline: none; text-align: center; }
+        .hidden { display: none; }
+        .error { color: #ff3333; font-weight: bold; }
+        .glitch { animation: pulse 2s infinite; text-transform: uppercase; letter-spacing: 2px; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        hr { border: 0; border-top: 1px dashed #33ff33; margin: 20px 0; }
+        .success { color: #55ff55; }
+    </style>
+</head>
+<body>
+
+<div id="terminal">
+    <div id="login-screen">
+        <p class="glitch">REMOTE ACCESS SYSTEM: BRAZIL-SCOTLAND V1.0</p>
+        <p>LOCATION: 55.9533° N, 3.1883° W (EDINBURGH)</p>
+        <p>STATUS: [ENCRYPTED]</p>
+        <hr>
+        <p>HINT: The day our journey began (DDMM)</p>
+        <p>> ENTER ACCESS KEY: <input type="text" id="passcode" maxlength="4" autofocus autocomplete="off"></p>
+        <p id="error-msg" class="hidden error">ACCESS DENIED. INVALID CREDENTIALS.</p>
+        <p><em>(Press Enter to submit)</em></p>
+    </div>
+
+    <div id="content" class="hidden">
+        <p class="success">ACCESS GRANTED...</p>
+        <p>ESTABLISHING SECURE CONNECTION...</p>
+        <hr>
+        <h2>Happy Anniversary! ❤️</h2>
+        <p>Code accepted. The cake was <strong>not</strong> a lie this time.</p>
+        <p>Distance is just a variable; our connection has 0% packet loss.</p>
+        <p><strong>YOUR REAL REWARD:</strong> Post-bug fixing stress relief massage</p>
+        <hr>
+        <p>PING: 1ms (Heart-to-Heart)</p>
+        <p>STATUS: Always Connected.</p>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById('passcode');
+    const errorMsg = document.getElementById('error-msg');
+    const loginScreen = document.getElementById('login-screen');
+    const content = document.getElementById('content');
+
+    input.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            if (input.value === '1902') {
+                loginScreen.classList.add('hidden');
+                content.classList.remove('hidden');
+            } else {
+                errorMsg.classList.remove('hidden');
+                input.value = '';
+            }
+        }
+    });
+</script>
+</body>
+</html>
